@@ -79,7 +79,9 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
     type: git
-    repo: git@118.89.242.250:/home/git/blog.git
+    repo:
+      vps: ssh://git@118.89.242.250/home/git/blog
+      github: ssh://git@github.com/urnotcarol/urnotcarol.github.io.git
     branch: master
 
 # 以下来自 yilia 主题

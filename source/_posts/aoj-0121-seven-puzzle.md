@@ -2,6 +2,8 @@
 title: AOJ 0121 Seven Puzzle 题解 BFS + 康托展开
 id: 343
 date: 2017-04-17 16:21:34
+categories:
+- 算法
 tags: BFS OJ
 ---
 
