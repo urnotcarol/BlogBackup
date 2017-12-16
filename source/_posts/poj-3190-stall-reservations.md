@@ -3,6 +3,11 @@ title: POJ 3190 Stall Reservations 题解
 id: 115
 date: 2017-02-12 22:15:34
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 3190 Stall Reservations](https://vjudge.net/problem/39459/origin)
@@ -22,8 +27,8 @@ struct cow {
     int first;
     int second;
     int index;
-    bool operator &lt; (const cow &amp;c) {
-        return first &lt; c.first;
+    bool operator < (const cow &c) {
+        return first < c.first;
     }
 };
 cow invl[50000];
@@ -33,14 +38,14 @@ int assigned[50000];
 void solve() {
     int res = 1;
     sort(invl, invl + n);
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         bool hasFound = 0;
         int s = invl[i].first;      
         int t = invl[i].second;
         int cowIndex = invl[i].index;
 
-        for (int j = 1; j &lt;= res; j++) {            
-            if (s &gt; stall[j].second) {
+        for (int j = 1; j <= res; j++) {
+            if (s > stall[j].second) {
                 stall[j].second = t;
                 hasFound = 1;
                 assigned[cowIndex] = j;
@@ -56,16 +61,16 @@ void solve() {
         }              
     }
     printf("%d\n", res);
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         printf("%d\n", assigned[i]);
     } 
 }
 
 int main() {
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++) {
-        scanf("%d", &amp;invl[i].first);
-        scanf("%d", &amp;invl[i].second);
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &invl[i].first);
+        scanf("%d", &invl[i].second);
         invl[i].index = i;
     }
     solve();

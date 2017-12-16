@@ -3,6 +3,11 @@ title: POJ 2377 Bad Cowtractors 题解 Prim 最小生成树
 id: 309
 date: 2017-04-04 19:41:13
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最短路径
 ---
 
 ## 题意
@@ -51,7 +56,7 @@ int par[MAX_N];
 int rank[MAX_N];
 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -70,7 +75,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &lt; rank[y]) {
+    if (rank[x] < rank[y]) {
         par[x] = y;
     }
     else {
@@ -89,7 +94,7 @@ int prim() {
     fill(minCost, minCost + N, INF);
     fill(used, used + N, false);
     minCost[0] = 0;
-    priority_queue<P, vector&lt;P&gt;, greater&lt;P&gt; > que;
+    priority_queue<P, vector<P>, greater<P> > que;
     que.push(P(0, 0));
 
     int res = 0;
@@ -97,14 +102,14 @@ int prim() {
         P p = que.top();
         que.pop();
         int v = p.second;
-        if (minCost[v] &lt; p.first) {
+        if (minCost[v] < p.first) {
             continue;
         }
         used[v] = true;
         res += p.first;
-        for (int i = 0; i &lt; G[v].size(); i++) {
+        for (int i = 0; i < G[v].size(); i++) {
             Edge e = G[v][i];
-            if (!used[e.to] &amp;&amp; minCost[e.to] &gt; e.cost) {
+            if (!used[e.to] && minCost[e.to] > e.cost) {
                 minCost[e.to] = e.cost;
                 que.push(P(minCost[e.to], e.to));
             }
@@ -117,11 +122,11 @@ int main() {
     #ifndef ONLINE_JUDGE
     freopen("in.txt", "r", stdin);
     #endif
-    scanf("%d %d", &amp;N, &amp;M);
+    scanf("%d %d", &N, &M);
     init(N);
     int from, to, cost;
-    for (int i = 0; i &lt; M; i++) {
-        scanf("%d %d %d", &amp;from, &amp;to, &amp;cost);
+    for (int i = 0; i < M; i++) {
+        scanf("%d %d %d", &from, &to, &cost);
         from--;
         to--;
         unite(from, to);
@@ -130,7 +135,7 @@ int main() {
     }
     int res = -1;
     bool connected = true;
-    for (int i = 1; i &lt; N; i++) {
+    for (int i = 1; i < N; i++) {
         if (!same(0, i)) {
             connected = false;
             break;
@@ -139,7 +144,7 @@ int main() {
     if (connected) {
         res = -prim();
     }
-    cout &lt;&lt; res;
+    cout << res;
     #ifndef ONLINE_JUDGE
     fclose(stdin);
     #endif

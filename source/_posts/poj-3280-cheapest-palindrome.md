@@ -3,6 +3,11 @@ title: POJ 3280 Cheapest Palindrome 题解
 id: 159
 date: 2017-03-09 11:32:36
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 字符串
 ---
 
 
@@ -43,24 +48,24 @@ int dp[MAX_M + 3][MAX_M + 3];
 int cost[26 + 3];
 
 int main() {
-    scanf("%d %d", &amp;N, &amp;M);
+    scanf("%d %d", &N, &M);
     cin.ignore();
-    for (int i = 0; i &lt; M; i++) {
-        scanf("%c", &amp;tag[i]); 
+    for (int i = 0; i < M; i++) {
+        scanf("%c", &tag[i]);
     }
     cin.ignore();
 
     char tempChar;
     int add;
     int del;
-    for (int i = 0; i &lt; N; i++) {
-        scanf("%c %d %d", &amp;tempChar, &amp;add, &amp;del);
+    for (int i = 0; i < N; i++) {
+        scanf("%c %d %d", &tempChar, &add, &del);
         cost[tempChar - 'a'] = min(add, del);
         cin.ignore();
     }
 
-    for (int i = M - 1; i &gt;= 0; i--) {
-        for (int j = i + 1; j &lt; M; j++) {
+    for (int i = M - 1; i >= 0; i--) {
+        for (int j = i + 1; j < M; j++) {
             if (tag[i] == tag[j]) {
                 dp[i][j] = dp[i + 1][j - 1];
             }
@@ -70,13 +75,9 @@ int main() {
         }
     }
 
-    cout &lt;&lt; dp[0][M - 1];
+    cout << dp[0][M - 1];
 
     return 0; 
 
 }
 ```
-
-&nbsp;
-
-&nbsp;

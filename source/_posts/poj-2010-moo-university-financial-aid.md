@@ -3,6 +3,11 @@ title: POJ 2010 Moo University - Financial Aid 题解
 id: 223
 date: 2017-03-15 10:39:19
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 优先队列
 ---
 
 [POJ 2010 Moo University - Financial Aid](http://poj.org/problem?id=2010)
@@ -13,7 +18,7 @@ Bessie 办了一个奶牛大学，要从 C 只奶牛中招 N 只上学。每只�
 
 ## 思路
 
-先对奶牛按分数排序，只有分数处于中间的一部分奶牛才有可能是中位数。遍历这些奶牛，算出每一只作为中位数时，比它分数低的奶牛所需要的最少助学金 lower[i], 比它分数高的奶牛所需要的最少助学金 upper[i]。最后根据分数从大到小遍历这些奶牛，满足 lower[i] + 助学金[i] + upper[i] &lt;= F 的第一只奶牛，即为答案。
+先对奶牛按分数排序，只有分数处于中间的一部分奶牛才有可能是中位数。遍历这些奶牛，算出每一只作为中位数时，比它分数低的奶牛所需要的最少助学金 lower[i], 比它分数高的奶牛所需要的最少助学金 upper[i]。最后根据分数从大到小遍历这些奶牛，满足 lower[i] + 助学金[i] + upper[i] <= F 的第一只奶牛，即为答案。
 
 这道题对优先队列的使用在于求 lower[i] 和 upper [i] 的时候，这也是我没有想的很好的地方。起初我对每只奶牛都建立了一个最小优先队列，把其前面的所有牛的助学金都放进去，再出队 C/2 个，自以为很厉害，可以说是熟练运用优先队列了呢，这次收到了来自 TLE 的无声嘲讽，还是图样。
 
@@ -38,9 +43,9 @@ int lower[MAX_C + 4];
 int upper[MAX_C + 4];
 
 int main() {
-    scanf("%d %d %d", &amp;N, &amp;C, &amp;F);
-    for (int i = 0; i &lt; C; i++) {
-        scanf("%d %d", &amp;cow[i].first, &amp;cow[i].second);
+    scanf("%d %d %d", &N, &C, &F);
+    for (int i = 0; i < C; i++) {
+        scanf("%d %d", &cow[i].first, &cow[i].second);
     }
 
     sort(cow, cow + C);
@@ -49,16 +54,16 @@ int main() {
 
     priority_queue<int> que;
     int total = 0;
-    for (int i = 0; i &lt; first; i++) {
+    for (int i = 0; i < first; i++) {
         total += cow[i].second;
         que.push(cow[i].second);        
     }
 
-    for (int i = first; i &lt;= last; i++) {
+    for (int i = first; i <= last; i++) {
         lower[i] = total;
         int aid = cow[i].second;
         int top = que.top();
-        if (aid &lt; top) {
+        if (aid < top) {
             que.pop();
             que.push(aid);
             total = total - top + aid;
@@ -70,16 +75,16 @@ int main() {
     }
 
     total = 0;
-    for (int i = last + 1; i &lt; C; i++) {
+    for (int i = last + 1; i < C; i++) {
         total += cow[i].second;
         que.push(cow[i].second);
     }
 
-    for (int i = last; i &gt;= first; i--) {
+    for (int i = last; i >= first; i--) {
         upper[i] = total;
         int aid = cow[i].second;
         int top = que.top();
-        if (aid &lt; top) {
+        if (aid < top) {
             que.pop();
             que.push(aid);
             total = total - top + aid;
@@ -87,13 +92,13 @@ int main() {
     }
 
     int res = -1;
-    for (int i = last; i &gt;= first; i--) {
-        if (lower[i] + cow[i].second + upper[i] &lt;= F) {
+    for (int i = last; i >= first; i--) {
+        if (lower[i] + cow[i].second + upper[i] <= F) {
             res = cow[i].first;
             break;
         }
     }
-    cout &lt;&lt; res;
+    cout << res;
     return 0;
 }
 ```

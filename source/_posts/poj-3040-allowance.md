@@ -3,6 +3,11 @@ title: POJ 3040 Allowance 题解
 id: 119
 date: 2017-02-12 22:18:48
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 3040 Allowance](http://poj.org/problem?id=3040)
@@ -42,22 +47,22 @@ int solve() {
     sort(coin, coin + m);
     int need = c;
     while (1) {
-        for (int i = m - 1; i &gt;= 0; --i) {   
-            if (need &gt; 0 &amp;&amp; coin[i].second &gt; 0) {
+        for (int i = m - 1; i >= 0; --i) {
+            if (need > 0 && coin[i].second > 0) {
                 int t = min(coin[i].second, need / coin[i].first);
                 need -= t * coin[i].first;
                 coin[i].second -= t;  
             }   
         } 
-        for (int i = 0; i &lt; m; i++) {
-            if (need &gt; 0 &amp;&amp; coin[i].second &gt; 0) {
+        for (int i = 0; i < m; i++) {
+            if (need > 0 && coin[i].second > 0) {
                 int t = min(coin[i].second, (int)ceil((double)need / (double)(coin[i].first)));
                 need -= t * coin[i].first;
                 coin[i].second -= t;     
             }
 
         }
-        if (need &gt; 0) {
+        if (need > 0) {
             break;
         }
         res++;
@@ -70,10 +75,10 @@ int main() {
     int res = 0;
     int v;
     int b;
-    scanf("%d %d", &amp;n, &amp;c);
-    for (int i = 0; i &lt; n; ++i) {
-        scanf("%d %d", &amp;v, &amp;b);
-        if (v &gt;= c) {
+    scanf("%d %d", &n, &c);
+    for (int i = 0; i < n; ++i) {
+        scanf("%d %d", &v, &b);
+        if (v >= c) {
             res += b;
         }
         else {

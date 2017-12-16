@@ -3,6 +3,11 @@ title: POJ 3046 Ant Counting 题解
 id: 157
 date: 2017-03-08 11:32:37
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -17,7 +22,7 @@ tags:
 
 多重背包求方案总数问题。
 
-在这道题里面学到了二维滚动数组，把 dp[MAX_T][MAX_A] 压缩成为 dp[2][MAX_A]. 用与 1 运算 &amp; 来区分当前和前一个数组。
+在这道题里面学到了二维滚动数组，把 dp[MAX_T][MAX_A] 压缩成为 dp[2][MAX_A]. 用与 1 运算 & 来区分当前和前一个数组。
 
 
 <!-- more -->
@@ -41,30 +46,30 @@ int c[MAX_T + 3];
 int dp[2][MAX_A + 3];
 
 int main() {
-    scanf("%d %d %d %d", &amp;T, &amp;A, &amp;S, &amp;B);
+    scanf("%d %d %d %d", &T, &A, &S, &B);
     int ant;
-    for (int i = 0; i &lt; A; i++) {
-        scanf("%d", &amp;ant);
+    for (int i = 0; i < A; i++) {
+        scanf("%d", &ant);
         c[ant]++;
     }
 
     dp[0][0] = 1;
-    for (int i = 1; i &lt;= T; i++) {
-        int cur = i &amp; 0x1;
-        int pre = (i - 1) &amp; 0x1;
+    for (int i = 1; i <= T; i++) {
+        int cur = i & 0x1;
+        int pre = (i - 1) & 0x1;
         memset(dp[cur], 0, sizeof(dp[cur]));
-        for (int j = 0; j &lt;= A; j++) {
-            for (int k = 0; k &lt;= min(c[i], j); k++) {
+        for (int j = 0; j <= A; j++) {
+            for (int k = 0; k <= min(c[i], j); k++) {
                 dp[cur][j] = (dp[cur][j] + dp[pre][j - k]) % MOD;
             }
         }
     }
 
     int res = 0;
-    for (int i = S; i &lt;= B; i++) {
-        res += dp[T&amp; 0x1][i] % MOD;
+    for (int i = S; i <= B; i++) {
+        res += dp[T& 0x1][i] % MOD;
     }
-    cout &lt;&lt; res % MOD;
+    cout << res % MOD;
     return 0; 
 }
 ```

@@ -3,6 +3,11 @@ title: POJ 1182 食物链 题解
 id: 230
 date: 2017-03-15 22:13:00
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 [ POJ 1182 食物链](http://poj.org/problem?id=1182)
@@ -18,7 +23,7 @@ tags:
 1） 当前的话与前面的某些真的话冲突，就是假话；
 2） 当前的话中X或Y比N大，就是假话；
 3） 当前的话表示X吃X，就是假话。
-你的任务是根据给定的N（1 &lt;= N &lt;= 50,000）和K句话（0 &lt;= K &lt;= 100,000），输出假话的总数。
+你的任务是根据给定的N（1 <= N <= 50,000）和K句话（0 <= K <= 100,000），输出假话的总数。
 
 ## 思路
 
@@ -49,7 +54,7 @@ int rank[MAX_N * 3 + 4];
 
 //初始化n个元素 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -70,7 +75,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &lt; rank[y]) {
+    if (rank[x] < rank[y]) {
         par[x] = y;
     }
     else {
@@ -87,15 +92,15 @@ bool same(int x, int y) {
 } 
 
 int main() {
-    scanf("%d %d", &amp;N, &amp;K);
+    scanf("%d %d", &N, &K);
     init(N * 3);
     int ans = 0;
-    for (int i = 0; i &lt; K; i++) {
-        scanf("%d %d %d", &amp;D, &amp;X, &amp;Y);
+    for (int i = 0; i < K; i++) {
+        scanf("%d %d %d", &D, &X, &Y);
         X--;
         Y--;
 
-        if (X < 0 || X &gt;= N || Y &lt; 0 || Y >= N) {
+        if (X < 0 || X >= N || Y < 0 || Y >= N) {
             ans++;   
             continue;
         }

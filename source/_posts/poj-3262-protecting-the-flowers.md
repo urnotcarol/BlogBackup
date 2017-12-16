@@ -3,6 +3,11 @@ title: POJ 3262 Protecting the Flowers 题解
 id: 123
 date: 2017-02-12 22:25:16
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 &nbsp;
@@ -43,27 +48,27 @@ int n;
 struct Cow {
     int first;
     int second;
-    bool operator &lt; (const Cow &amp; c) {
-        return first * c.second &lt; second * c.first;
+    bool operator < (const Cow & c) {
+        return first * c.second < second * c.first;
     }
 }; 
 Cow cow[100000];
 typedef long long ll;
 
 int main() {
-    scanf("%d", &amp;n);
+    scanf("%d", &n);
     ll sum = 0;
     ll res = 0;
-    for (int i = 0; i &lt; n; i++) {
-        scanf("%d %d", &amp;cow[i].first, &amp;cow[i].second);
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", &cow[i].first, &cow[i].second);
         sum += cow[i].second;   //sum记录所有奶牛吃花的总速度 
     }
     sort(cow, cow + n);
-    for (int i = 0; i &lt; n - 1; i++) {
+    for (int i = 0; i < n - 1; i++) {
         sum -= cow[i].second;   //每送走一头牛，吃花总速度就减去这头牛的速度 
         res += 2 * sum * cow[i].first;      
     } 
-    cout &lt;&lt; res &lt;&lt; endl;
+    cout << res << endl;
     return 0;
 }
 ```

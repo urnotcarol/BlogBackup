@@ -3,6 +3,11 @@ title: 'POJ 1703 Find them, Catch them 题解'
 id: 238
 date: 2017-03-18 11:35:40
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 [POJ Find them, Catch them](http://poj.org/problem?id=1703)
@@ -31,7 +36,7 @@ int par[MAX_N * 2 + 4];
 int rank[MAX_N * 2 + 4];
 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -50,7 +55,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &lt; rank[y]) {
+    if (rank[x] < rank[y]) {
         par[x] = y;
     }
     else {
@@ -66,16 +71,16 @@ bool same(int x, int y) {
 }
 
 int main() {
-    scanf("%d", &amp;T);
+    scanf("%d", &T);
     while (T--) {
-        scanf("%d %d", &amp;N, &amp;M);
+        scanf("%d %d", &N, &M);
         init(N * 2);
         char message;
         int a;
         int b;
         cin.ignore();
-        for (int i = 0; i &lt; M; i++) {
-            scanf("%c %d %d", &amp;message, &amp;a, &amp;b);
+        for (int i = 0; i < M; i++) {
+            scanf("%c %d %d", &message, &a, &b);
             a--;
             b--;
             if (message == 'D') {

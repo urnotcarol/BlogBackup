@@ -3,9 +3,14 @@ title: POJ 3187 Backward Digit Sums 题解
 id: 98
 date: 2017-02-12 21:53:38
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
-<span style="color: #008000;">[POJ 3187 Backward Digit Sums ](http://poj.org/problem?id=3187)</span>
+[POJ 3187 Backward Digit Sums ](http://poj.org/problem?id=3187)
 
 思路：
 
@@ -21,19 +26,19 @@ int sum;
 int mycase[11][11];
 
 int main() {
-    cin &gt;&gt; n &gt;&gt; sum;
-    for (int i = 1; i &lt;= n; i++) {
+    cin >> n >> sum;
+    for (int i = 1; i <= n; i++) {
         mycase[n][i] = i;
     } 
     do {
-        for (int i = n; i &gt; 1; i--) {
-            for (int j = 1; j &lt; i; j++) {
+        for (int i = n; i > 1; i--) {
+            for (int j = 1; j < i; j++) {
                 mycase[i - 1][j] = mycase[i][j] + mycase[i][j + 1];
             }
         }
         if (mycase[1][1] == sum) {
-            for (int i = 1; i &lt;= n; i++) {
-                cout &lt;&lt; mycase[n][i] &lt;&lt; " ";
+            for (int i = 1; i <= n; i++) {
+                cout << mycase[n][i] << " ";
             }
             break;
         }

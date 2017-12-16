@@ -3,6 +3,11 @@ title: POJ 3259 Wormholes 题解 Bellman-Ford 负圈
 id: 296
 date: 2017-04-04 11:22:45
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最短路径
 ---
 
 [POJ 3259 Wormholes](http://poj.org/problem?id=3259)
@@ -37,9 +42,9 @@ struct Edge {
     int cost;
     Edge() {}
     Edge(int from, int to, int cost) {
-        this-&gt;from = from;
-        this-&gt;to = to;
-        this-&gt;cost = cost;
+        this->from = from;
+        this->to = to;
+        this->cost = cost;
     }
 };
 vector<Edge> edge;
@@ -54,10 +59,10 @@ int W;
 
 bool BellmanFord () {
     memset(d, 0, sizeof(d));
-    for (int v = 0; v &lt; N; v++) {
-        for (int i = 0; i &lt; edge.size(); i++) {
+    for (int v = 0; v < N; v++) {
+        for (int i = 0; i < edge.size(); i++) {
             Edge e = edge[i];
-            if (d[e.to] &gt; d[e.from] + e.cost) {
+            if (d[e.to] > d[e.from] + e.cost) {
                 d[e.to] = d[e.from] + e.cost;
                 if (v == N - 1) {
                     return true;
@@ -72,20 +77,20 @@ int main() {
     #ifndef ONLINE_JUDGE
     freopen("in.txt", "r", stdin);
     #endif
-    scanf("%d", &amp;F);
+    scanf("%d", &F);
     while (F--) {
         edge.clear();
-        scanf("%d %d %d", &amp;N, &amp;M, &amp;W);
+        scanf("%d %d %d", &N, &M, &W);
         int from, to, cost;
-        for (int i = 0; i &lt; M; i++) {
-            scanf("%d %d %d", &amp;from, &amp;to, &amp;cost); 
+        for (int i = 0; i < M; i++) {
+            scanf("%d %d %d", &from, &to, &cost);
             Edge e1(from, to, cost);
             Edge e2(to, from, cost);
             edge.push_back(e1);
             edge.push_back(e2);
         }
-        for (int i = 0; i &lt; W; i++) {
-            scanf("%d %d %d", &amp;from, &amp;to, &amp;cost);
+        for (int i = 0; i < W; i++) {
+            scanf("%d %d %d", &from, &to, &cost);
             Edge e(from, to, -cost);
             edge.push_back(e);
         }

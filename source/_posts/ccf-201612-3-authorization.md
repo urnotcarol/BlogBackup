@@ -3,6 +3,10 @@ title: CCF 201612-3 权限查询 题解
 id: 250
 date: 2017-03-18 22:04:17
 tags:
+- 算法
+- OJ
+categories:
+- 算法
 ---
 
 链接不好贴，直接把完整题目拷贝过来吧：
@@ -24,21 +28,21 @@ tags:
 > 
 > <div class="pdsec">输入格式
 > 
-> <div class="pdcont">　　输入第一行是一个正整数 p，表示不同的权限类别的数量。紧接着的 p 行被称为 P 段，每行一个字符串，描述各个权限。对于分等级权限，格式为 <category&gt;:&lt;level&gt;，其中 &lt;category&gt; 是权限类名，&lt;level> 是该类权限的最高等级。对于不分等级权限，字符串只包含权限类名。
+> <div class="pdcont">　　输入第一行是一个正整数 p，表示不同的权限类别的数量。紧接着的 p 行被称为 P 段，每行一个字符串，描述各个权限。对于分等级权限，格式为 <category>:<level>，其中 <category> 是权限类名，<level> 是该类权限的最高等级。对于不分等级权限，字符串只包含权限类名。
 > 
 > 接下来一行是一个正整数 r，表示不同的角色数量。紧接着的 r 行被称为 R 段，每行描述一种角色，格式为
 > 
-> <role&gt; &lt;s&gt; &lt;privilege 1&gt; &lt;privilege 2&gt; ... &lt;privilege s>
+> <role> <s> <privilege 1> <privilege 2> ... <privilege s>
 > 
-> 其中 <role&gt; 是角色名称，&lt;s&gt; 表示该角色具有多少种权限。后面 &lt;s> 个字符串描述该角色具有的权限，格式同 P 段。
+> 其中 <role> 是角色名称，<s> 表示该角色具有多少种权限。后面 <s> 个字符串描述该角色具有的权限，格式同 P 段。
 > 
 > 接下来一行是一个正整数 u，表示用户数量。紧接着的 u 行被称为 U 段，每行描述一个用户，格式为
 > 
-> <user&gt; &lt;t&gt; &lt;role 1&gt; &lt;role 2&gt; ... &lt;role t>
+> <user> <t> <role 1> <role 2> ... <role t>
 > 
-> 其中 <user&gt; 是用户名，&lt;t&gt; 表示该用户具有多少种角色。后面 &lt;t> 个字符串描述该用户具有的角色。
+> 其中 <user> 是用户名，<t> 表示该用户具有多少种角色。后面 <t> 个字符串描述该用户具有的角色。
 > 
-> 接下来一行是一个正整数 q，表示权限查询的数量。紧接着的 q 行被称为 Q 段，每行描述一个授权查询，格式为 <user&gt; &lt;privilege&gt;，表示查询用户 &lt;user&gt; 是否具有 &lt;privilege&gt; 权限。如果查询的权限是分等级权限，则查询中的 &lt;privilege> 可指定等级，表示查询该用户是否具有该等级的权限；也可以不指定等级，表示查询该用户具有该权限的等级。对于不分等级权限，只能查询该用户是否具有该权限，查询中不能指定等级。
+> 接下来一行是一个正整数 q，表示权限查询的数量。紧接着的 q 行被称为 Q 段，每行描述一个授权查询，格式为 <user> <privilege>，表示查询用户 <user> 是否具有 <privilege> 权限。如果查询的权限是分等级权限，则查询中的 <privilege> 可指定等级，表示查询该用户是否具有该等级的权限；也可以不指定等级，表示查询该用户具有该权限的等级。对于不分等级权限，只能查询该用户是否具有该权限，查询中不能指定等级。
 > 
 > <div class="pdsec">输出格式
 > 
@@ -151,7 +155,7 @@ tags:
 > <div class="pdcont">
 &nbsp;
 
-上次认证的题目，当时 C++ 太手生，数组都写不顺……自然没做出来。明天要再考一次，临时抱佛脚...做了一下，做出来了。
+上次认证的题目，当时没做出来。明天要再考一次，临时抱佛脚...做了一下，做出来了。
 
 ## 思路
 
@@ -182,7 +186,7 @@ public:
     }
     Privilege (string input) {
         char tempL = input[input.length() - 1];
-        if (tempL <= '9' &amp;&amp; tempL >= '0') {
+        if (tempL <= '9' && tempL >= '0') {
             category = input.substr(0, input.length() - 2);
             level = tempL - '0';
         } 
@@ -211,62 +215,62 @@ struct Query {
 } query[MAX_Q];
 
 int main() {
-    scanf("%d", &amp;p);    
-    for (int i = 0; i &lt; p; i++) {
+    scanf("%d", &p);
+    for (int i = 0; i < p; i++) {
         string tempP;
-        cin &gt;&gt; tempP;
+        cin >> tempP;
         Privilege temp(tempP);
         pri[i] = temp;
 
     }
 
-    scanf("%d", &amp;r);
-    for (int i = 0; i &lt; r; i++) {
-        cin &gt;&gt; role[i].rolename &gt;&gt; role[i].s;
-        for (int j = 0; j &lt; role[i].s; j++) {
+    scanf("%d", &r);
+    for (int i = 0; i < r; i++) {
+        cin >> role[i].rolename >> role[i].s;
+        for (int j = 0; j < role[i].s; j++) {
             string tempP;
-            cin &gt;&gt; tempP;
+            cin >> tempP;
             Privilege temp(tempP);
             role[i].myPri[j] = temp;     
         }
     }
 
-    scanf("%d", &amp;u);
-    for (int i = 0; i &lt; u; i++) {
-        cin &gt;&gt; user[i].username &gt;&gt; user[i].t;
-        for (int j = 0; j &lt; user[i].t; j++) {
-            cin &gt;&gt; user[i].myRole[j];
+    scanf("%d", &u);
+    for (int i = 0; i < u; i++) {
+        cin >> user[i].username >> user[i].t;
+        for (int j = 0; j < user[i].t; j++) {
+            cin >> user[i].myRole[j];
         }
     }
 
-    scanf("%d", &amp;q);
-    for (int i = 0; i &lt; q; i++) {
+    scanf("%d", &q);
+    for (int i = 0; i < q; i++) {
         string tempP;
-        cin &gt;&gt; query[i].username &gt;&gt; tempP;
+        cin >> query[i].username >> tempP;
         Privilege temp(tempP);
         query[i].myPri = temp;
         bool validUser = false;
         bool validPri = false;
         bool done = false;
-        for (int j = 0; j &lt; u; j++) {
+        for (int j = 0; j < u; j++) {
             if (user[j].username == query[i].username) {
                 validUser = true;
                 int maxLevel = -1;
-                for (int k = 0; k &lt; user[j].t; k++) {
+                for (int k = 0; k < user[j].t; k++) {
                     if (done) {
                         break;
                     }                    
-                    for (int x = 0; x &lt; r; x++) {
+                    for (int x = 0; x < r; x++) {
                         if (role[x].rolename == user[j].myRole[k]) {
-                            for (int y = 0; y &lt; role[x].s; y++) {
+                            for (int y = 0; y < role[x].s; y++) {
                                 if (role[x].myPri[y].category == query[i].myPri.category) {             
                                     validPri = true;                       
                                     if (role[x].myPri[y].level == -1) {  
-                                        cout &lt;&lt; "true" &lt;&lt; endl;
+                                        cout << "true" << endl;
                                         done = true;
                                         break;
                                     }
-                                    else if (role[x].myPri[y].level &gt; -1) {
+                                    else if (role[x].myPri[y].level > -1) {
                                         maxLevel = max(maxLevel, role[x].myPri[y].level);
                                     }
                                 }
@@ -274,21 +278,21 @@ int main() {
                         }
                     }
                 }
-                if (!done &amp;&amp; validPri) {
+                if (!done && validPri) {
                     if (query[i].myPri.level == -1) {
-                        cout &lt;&lt; maxLevel &lt;&lt; endl;
+                        cout << maxLevel << endl;
                     }
-                    else if (query[i].myPri.level &lt;= maxLevel) {
-                        cout &lt;&lt; "true" &lt;&lt; endl;
+                    else if (query[i].myPri.level <= maxLevel) {
+                        cout << "true" << endl;
                     }
                     else {
-                        cout &lt;&lt; "false" &lt;&lt; endl;
+                        cout << "false" << endl;
                     }
                 }
             }
         }    
         if (!validUser || !validPri) {
-            cout &lt;&lt; "false" &lt;&lt; endl;
+            cout << "false" << endl;
         }    
     }    
     return 0;

@@ -3,6 +3,11 @@ title: AOJ 0189 Convenient Location 题解
 id: 269
 date: 2017-03-31 11:24:18
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最短路径
 ---
 
 [AOJ 0189 Convenient Location](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0189)
@@ -47,9 +52,9 @@ int Bellman_Ford (int s) {
     d[s] = 0;
     while (true) {
         bool update = false;
-        for (int i = 0; i &lt; 2 * n; i++) {
+        for (int i = 0; i < 2 * n; i++) {
             Edge e = edge[i];
-            if (d[e.from] != INF &amp;&amp; d[e.from] + e.cost &lt; d[e.to]) {
+            if (d[e.from] != INF && d[e.from] + e.cost < d[e.to]) {
                 d[e.to] = d[e.from] + e.cost;
                 update = true;
             }
@@ -58,18 +63,18 @@ int Bellman_Ford (int s) {
             break;
         }        
     }
-    for (int i = 0; i &lt;= v; i++) {
+    for (int i = 0; i <= v; i++) {
         res += d[i];
     }
     return res;
 }
 
 int main() {
-    while (scanf("%d", &amp;n) &amp;&amp; n &gt; 0) {
+    while (scanf("%d", &n) && n > 0) {
         int path[MAX_V];                           
         v = 0;
-        for (int i = 0; i &lt; n; i++) {
-            scanf("%d %d %d", &amp;edge[i].from, &amp;edge[i].to, &amp;edge[i].cost);
+        for (int i = 0; i < n; i++) {
+            scanf("%d %d %d", &edge[i].from, &edge[i].to, &edge[i].cost);
             edge[i + n].from = edge[i].to;
             edge[i + n].to = edge[i].from;
             edge[i + n].cost = edge[i].cost;
@@ -77,7 +82,7 @@ int main() {
             v = max(v, edge[i].to);
         }
 
-        for (int i = 0; i &lt;= v; i++) {
+        for (int i = 0; i <= v; i++) {
             path[i] = Bellman_Ford(i);
         }
         printf("%d %d\n", min_element(path, path + v + 1) - path, *min_element(path, path + v + 1));

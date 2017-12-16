@@ -3,6 +3,11 @@ title: POJ 3050 Hopscotch 题解
 id: 100
 date: 2017-02-12 21:55:22
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
 [POJ 3050 Hopscotch](http://poj.org/problem?id=3050)
@@ -42,28 +47,28 @@ void dfs(int x, int y, int n) {
         return;
     }
     digits[n] = grid[x][y] + '0';
-    for (int i = 0; i &lt; 4; i++) {
+    for (int i = 0; i < 4; i++) {
         int nx = x + dx[i];
         int ny = y + dy[i];
-        if (nx &gt;= 0 &amp;&amp; nx < 5 &amp;&amp; ny >= 0 &amp;&amp; ny &lt; 5) {
+        if (nx >= 0 && nx < 5 && ny >= 0 && ny < 5) {
             dfs(nx, ny, n + 1);
         }
     }      
 }
 
 int main() {
-    for (int i = 0; i &lt; 5; i++) {
-        for (int j = 0; j &lt; 5; j++) {
-            cin &gt;&gt; grid[i][j];
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            cin >> grid[i][j];
         }
     }
 
-    for (int i = 0; i &lt; 5; i++) {
-        for (int j = 0; j &lt; 5; j++) {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
             dfs(i, j, 0);
         }
     }   
-    cout &lt;&lt; integers.size();
+    cout << integers.size();
     return 0; 
 }
 ```

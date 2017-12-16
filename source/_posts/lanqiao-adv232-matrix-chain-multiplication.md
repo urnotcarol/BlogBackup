@@ -2,7 +2,12 @@
 title: 蓝桥杯 ADV232 矩阵乘法 题解 区间DP
 id: 324
 date: 2017-04-05 11:13:29
-tags: 动态规划 区间DP
+tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 ### 题目

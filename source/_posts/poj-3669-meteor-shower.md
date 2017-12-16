@@ -3,6 +3,11 @@ title: POJ 3669 Meteor Shower 题解
 id: 96
 date: 2017-02-12 21:50:54
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
 <span style="color: #008000;">[POJ 3669 Meteor Shower](http://poj.org/problem?id=3669)</span>
@@ -21,7 +26,7 @@ tags:
 
 从原点开始广度优先地游荡，判断要不要到一个点的依据是该点在地图内，并且该点此前未被访问过，也未被炸毁（可能在将来被炸毁）。每到一个点，当前时间+1.
 
-在游荡过程中一旦发现一个点永远不会被炸（&gt;last变量，或者等于INF？），说明找到了活命点，返回当前所用时间。
+在游荡过程中一旦发现一个点永远不会被炸（>last变量，或者等于INF？），说明找到了活命点，返回当前所用时间。
 
 如果一直到遍历完毕都找不到这样的点，说明无法逃跑，返回-1。
 
@@ -68,14 +73,14 @@ int bfs() {
     que.push(cur);
 
     while (que.size()) {        
-        for (int i = 0; i &lt; 4; i++) {
+        for (int i = 0; i < 4; i++) {
             cur = que.front();
             cur.x += dx[i];
             cur.y += dy[i];
             cur.t++;
-            if (cur.x &gt;= 0 &amp;&amp; cur.y &gt;= 0 &amp;&amp; cur.t &lt; eMap[cur.x][cur.y] &amp;&amp; !visited[cur.x][cur.y]) {
+            if (cur.x >= 0 && cur.y >= 0 && cur.t < eMap[cur.x][cur.y] && !visited[cur.x][cur.y]) {
                 visited[cur.x][cur.y] = true;
-                if (eMap[cur.x][cur.y] &gt; last) {
+                if (eMap[cur.x][cur.y] > last) {
                     return cur.t;
                 }                
                 que.push(cur);
@@ -87,18 +92,18 @@ int bfs() {
 }
 
 int main() {
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++) {
-        cin &gt;&gt; input[i].x &gt;&gt; input[i].y &gt;&gt; input[i].t;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> input[i].x >> input[i].y >> input[i].t;
     }
 
     memset(eMap, 0x7f, sizeof(eMap));   //将地图上所有点的值设为极大值（按题意只需大于1000就可） 
-    for (int i = 0; i &lt; n; i++) {       //创建地图 
+    for (int i = 0; i < n; i++) {       //创建地图
         last = max(last, input[i].t);   //last变量记录流星下落的最晚时间 
-        for (int j = 0; j &lt; 5; j++) {
+        for (int j = 0; j < 5; j++) {
             int nx = input[i].x + dx[j];
             int ny = input[i].y + dy[j];
-            if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; eMap[nx][ny] &gt; input[i].t) {
+            if (nx >= 0 && ny >= 0 && eMap[nx][ny] > input[i].t) {
                 eMap[nx][ny] = input[i].t;
             }
         }     
@@ -108,7 +113,7 @@ int main() {
         return -1;
     } 
     else { 
-        cout &lt;&lt; bfs() &lt;&lt; endl;
+        cout << bfs() << endl;
     }
 
     return 0;

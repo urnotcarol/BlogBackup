@@ -3,6 +3,11 @@ title: POJ 3253 Fence Repair 题解
 id: 108
 date: 2017-02-12 22:09:03
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 3253 Fence Repair ](https://vjudge.net/problem/15032/origin)
@@ -51,20 +56,20 @@ int plank[20000];
 void slove() {
     long long res = 0;
 
-    while (n &gt; 1) {
+    while (n > 1) {
         int min = 0;        //最小的板的下标 
         int minNext = 1;    //次小的板的下标 
 
-        if (plank[min] &gt; plank[minNext]) {
+        if (plank[min] > plank[minNext]) {
             swap(min, minNext);
         }
 
-        for (int i = 2; i &lt; n; i++) {           //找到最小和次小的两块板 
-            if (plank[i] &lt; plank[min]) {
+        for (int i = 2; i < n; i++) {           //找到最小和次小的两块板
+            if (plank[i] < plank[min]) {
                 minNext = min;
                 min = i;
             }
-            else if (plank[i] &lt; plank[minNext]) {
+            else if (plank[i] < plank[minNext]) {
                 minNext = i;
             }
         }
@@ -80,13 +85,13 @@ void slove() {
 
         n--;         
     }
-    cout &lt;&lt; res &lt;&lt; endl;
+    cout << res << endl;
 }
 
 int main() {
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++) {
-        cin &gt;&gt; plank[i];
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> plank[i];
     }
     slove();
 

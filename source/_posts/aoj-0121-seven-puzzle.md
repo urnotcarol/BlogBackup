@@ -2,9 +2,12 @@
 title: AOJ 0121 Seven Puzzle 题解 BFS + 康托展开
 id: 343
 date: 2017-04-17 16:21:34
+tags:
+- 算法
+- OJ
 categories:
 - 算法
-tags: BFS OJ
+- 搜索
 ---
 
 [AOJ 0121 Seven Puzzle](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0121)
@@ -75,9 +78,9 @@ void bfs() {
         que.pop();
         for (int i = 0; i < 4; i++) {
             int p = cur.pos + dx[i];
-            if (p >= 0 &amp;&amp; p <= 7
-                &amp;&amp; !(cur.pos == 3 &amp;&amp; p == 4)
-                &amp;&amp; !(cur.pos == 4 &amp;&amp; p == 3)) {
+            if (p >= 0 && p <= 7
+                && !(cur.pos == 3 && p == 4)
+                && !(cur.pos == 4 && p == 3)) {
                 State next = cur;
                 swap(next.a[p], next.a[cur.pos]);
                 next.pos = p;

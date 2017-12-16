@@ -3,6 +3,11 @@ title: AOJ 2170 Marked Ancestor 题解
 id: 240
 date: 2017-03-18 21:36:00
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 [AOJ 2170 Marked Ancestor](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2170)
@@ -15,7 +20,7 @@ tags:
 
 设置一个标记变量 marked，结点 i 被标记后就将 marked[i] 置 1。查询时用并查集里的 find 操作寻找其祖先结点。
 
-<span style="color: #ff0000;">**注意**</span>
+## 注意
 
 一个结点的祖先结点包括其自身，子孙结点也包括其自身~~~
 
@@ -41,19 +46,19 @@ int find(int x) {
 }
 
 int main() {
-    while (scanf("%d %d", &amp;N, &amp;Q) != EOF &amp;&amp; N &gt; 0 &amp;&amp; Q &gt; 0) {
+    while (scanf("%d %d", &N, &Q) != EOF && N > 0 && Q > 0) {
         memset(marked, 0, sizeof(marked));
         marked[1] = 1;
         long long res = 0;
-        for (int i = 2; i &lt;= N; i++) {
-            scanf("%d", &amp;par[i]);
+        for (int i = 2; i <= N; i++) {
+            scanf("%d", &par[i]);
         }
         par[1] = 1;
         cin.ignore();
         char operation;
         int node;
-        for (int i = 0; i &lt; Q; i++) {
-            scanf("%c %d", &amp;operation, &amp;node);
+        for (int i = 0; i < Q; i++) {
+            scanf("%c %d", &operation, &node);
             if (operation == 'Q') {
                 res += find(node);
             }
@@ -62,7 +67,7 @@ int main() {
             }
             cin.ignore();
         }
-        cout &lt;&lt; res &lt;&lt; endl;
+        cout << res << endl;
     }
     return 0;
 }

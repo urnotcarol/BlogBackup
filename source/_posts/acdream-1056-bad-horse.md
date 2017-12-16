@@ -3,6 +3,11 @@ title: ACdream 1056 Bad Horse 题解
 id: 244
 date: 2017-03-18 21:45:26
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 图论基础
 ---
 
 ## 题目大意
@@ -40,7 +45,7 @@ vector<Member> member;
 
 void init(string node1, string node2) {
     bool found = false;
-    for (int j = 0; j &lt; member.size(); j++) {
+    for (int j = 0; j < member.size(); j++) {
         if (member[j].name == node1) {
             member[j].edge.push_back(node2);
             found = true;
@@ -59,8 +64,8 @@ void init(string node1, string node2) {
 bool dfs(int v, int c) {
     member[v].color = c;
     int index;
-    for (int i = 0; i &lt; member[v].edge.size(); i++) {
-        for (int j = 0; j &lt; member.size(); j++) {
+    for (int i = 0; i < member[v].edge.size(); i++) {
+        for (int j = 0; j < member.size(); j++) {
             if (member[j].name == member[v].edge[i]) {
                 index = j;
                 break;
@@ -69,7 +74,7 @@ bool dfs(int v, int c) {
         if (member[index].color == c) {
             return false;
         }
-        if (member[index].color == 0 &amp;&amp; !dfs(index, -c)) {
+        if (member[index].color == 0 && !dfs(index, -c)) {
             return false;
         }
     }
@@ -77,7 +82,7 @@ bool dfs(int v, int c) {
 }
 
 bool solve() {
-    for (int i = 0; i &lt; member.size(); i++) {
+    for (int i = 0; i < member.size(); i++) {
         if (member[i].color == 0) {
             if (!dfs(i, 1)) {
                 return false;
@@ -88,18 +93,18 @@ bool solve() {
 }
 
 int main() {
-    scanf("%d", &amp;T);
-    for (int t = 1; t &lt;= T; t++) {
+    scanf("%d", &T);
+    for (int t = 1; t <= T; t++) {
         bool res;
-        scanf("%d", &amp;M);
-        for (int i = 0; i &lt; member.size(); i++) {
+        scanf("%d", &M);
+        for (int i = 0; i < member.size(); i++) {
             member[i].edge.clear();
         }
         member.clear();
         string first;
         string second;
-        for (int i = 0; i &lt; M; i++) {
-            cin &gt;&gt; first &gt;&gt; second;
+        for (int i = 0; i < M; i++) {
+            cin >> first >> second;
             init(first, second);
             init(second, first);
         }

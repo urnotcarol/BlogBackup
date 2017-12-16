@@ -3,6 +3,11 @@ title: POJ 2431 Expedition 题解
 id: 165
 date: 2017-03-10 16:15:55
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 优先队列
 ---
 
 [
@@ -47,9 +52,9 @@ void solve() {
     int pos = 0;
     int tank = P;
 
-    for (int i = 0; i &lt; N; i++) {
+    for (int i = 0; i < N; i++) {
         int d = stop[i].first - pos;  //distance to next fuel stop
-        while (tank &lt; d) {
+        while (tank < d) {
             if (que.empty()) {
                 printf("-1");
                 return;
@@ -68,14 +73,14 @@ void solve() {
 }
 
 int main() {
-    scanf("%d", &amp;N);
+    scanf("%d", &N);
 
-    for (int i = 0; i &lt; N; i++) {
-        scanf("%d %d", &amp;stop[i].first, &amp;stop[i].second);        
+    for (int i = 0; i < N; i++) {
+        scanf("%d %d", &stop[i].first, &stop[i].second);
     }
-    scanf("%d %d", &amp;L, &amp;P);
+    scanf("%d %d", &L, &P);
 
-    for (int i = 0; i &lt; N; i++) {
+    for (int i = 0; i < N; i++) {
         stop[i].first = L - stop[i].first;  //将距终点的距离改为距起点的距离，方便之后操作
     }
     sort(stop, stop + N);

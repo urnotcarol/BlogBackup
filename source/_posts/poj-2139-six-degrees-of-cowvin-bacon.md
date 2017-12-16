@@ -3,6 +3,11 @@ title: POJ 2139 Six Degrees of Cowvin Bacon 题解
 id: 273
 date: 2017-03-31 11:54:12
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最短路径
 ---
 
 [POJ 2139 Six Degrees of Cowvin Bacon](http://poj.org/problem?id=2139)
@@ -30,7 +35,7 @@ const int MAX_E =  (301 * 300) / 2 + 4;
 const int MAX_N = 300 + 4;
 const int INF = 0x3f3f3f3f;
 typedef pair<int, int> Edge;
-vector<pair&lt;int, int&gt; > edge;
+vector<pair<int, int> > edge;
 int d[MAX_N];
 int cow[MAX_N];
 int N;
@@ -42,9 +47,9 @@ int BellmanFord(int s) {
 
     while (true) {
         bool update = false;
-        for (int i = 0; i &lt; edge.size(); i++) {
+        for (int i = 0; i < edge.size(); i++) {
             Edge e = edge[i];
-            if (d[e.first] != INF &amp;&amp; d[e.second] &gt; d[e.first] + 1) {
+            if (d[e.first] != INF && d[e.second] > d[e.first] + 1) {
                 update = true;
                 d[e.second] = d[e.first] + 1;
             }
@@ -55,7 +60,7 @@ int BellmanFord(int s) {
     }
 
     int res = 0;
-    for (int i = 0; i &lt; N; i++) {
+    for (int i = 0; i < N; i++) {
         res += d[i + 1];
     }
     return res;
@@ -65,22 +70,22 @@ int main() {
     #ifndef ONLINE_JUDGE
     freopen("in.txt", "r", stdin);
     #endif
-    scanf("%d %d", &amp;N, &amp;M);
+    scanf("%d %d", &N, &M);
     int num;
-    for (int i = 0; i &lt; M; i++) {
-        scanf("%d", &amp;num);
-        for (int j = 0; j &lt; num; j++) {
-            scanf("%d", &amp;cow[j]);
+    for (int i = 0; i < M; i++) {
+        scanf("%d", &num);
+        for (int j = 0; j < num; j++) {
+            scanf("%d", &cow[j]);
         }
-        for (int j = 0; j &lt; num - 1; j++) {
-            for (int k = j + 1; k &lt; num; k++) {
+        for (int j = 0; j < num - 1; j++) {
+            for (int k = j + 1; k < num; k++) {
                 edge.push_back(Edge(cow[j], cow[k]));
                 edge.push_back(Edge(cow[k], cow[j]));
             }
         }
     }
     int minD = INF;
-    for (int i = 0; i &lt; N; i++) {
+    for (int i = 0; i < N; i++) {
         minD = min(minD, BellmanFord(i + 1));
     }
     printf("%d", 100 * minD / (N - 1));

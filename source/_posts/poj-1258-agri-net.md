@@ -3,6 +3,11 @@ title: POJ 1258 Agri-Net 题解 Prim 最小生成树
 id: 305
 date: 2017-04-04 19:25:11
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最小生成树
 ---
 
 [POJ 1258 Agri-Net](http://poj.org/problem?id=1258)
@@ -48,7 +53,7 @@ int prim() {
     fill(used, used + N, false);
     minCost[0] = 0;
 
-    priority_queue<P, vector&lt;P&gt;, greater&lt;P&gt; > que;
+    priority_queue<P, vector<P>, greater<P> > que;
     que.push(P(0, 0));
 
     int res = 0;
@@ -56,14 +61,14 @@ int prim() {
         P p = que.top();
         que.pop();
         int v = p.second;
-        if (minCost[v] &lt; p.first) {
+        if (minCost[v] < p.first) {
             continue;
         }
         used[v] = true;
         res += p.first;
-        for (int i = 0; i &lt; G[v].size(); i++) {
+        for (int i = 0; i < G[v].size(); i++) {
             Edge e = G[v][i];
-            if (!used[e.to] &amp;&amp; minCost[e.to] &gt; e.cost) {
+            if (!used[e.to] && minCost[e.to] > e.cost) {
                 minCost[e.to] = e.cost;
                 que.push(P(minCost[e.to], e.to));
             }
@@ -77,14 +82,14 @@ int main() {
     freopen("in.txt", "r", stdin);
     #endif
     while (1) {
-        if (scanf("%d", &amp;N) == EOF) {
+        if (scanf("%d", &N) == EOF) {
             break;
         }
         int cost;
-        for (int i = 0; i &lt; N; i++) {
+        for (int i = 0; i < N; i++) {
             G[i].clear();
-            for (int j = 0; j &lt; N; j++) {
-                scanf("%d", &amp;cost);
+            for (int j = 0; j < N; j++) {
+                scanf("%d", &cost);
                 if (i != j) {
                     G[i].push_back(Edge(j, cost));
                 }

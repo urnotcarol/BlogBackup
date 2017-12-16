@@ -3,6 +3,11 @@ title: 蓝桥杯 ALGO-137 Lift and Throw 题解
 id: 275
 date: 2017-04-02 14:37:15
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
 ## 题目
@@ -97,7 +102,7 @@ int p[4];   //lift which one
 int res = 0;
 
 bool near(int s) {
-    for (int i = 1; i &lt;= 3; i++) {
+    for (int i = 1; i <= 3; i++) {
         if (abs(pos[i] - s) == 1) {
             return true;
         }
@@ -106,16 +111,16 @@ bool near(int s) {
 }
 
 void dfs() {
-    for (int i = 1; i &lt;= 3; i++) {
+    for (int i = 1; i <= 3; i++) {
         res = max(res, pos[i]);
     } 
-    for (int i = 1; i &lt;= 3; i++) {
+    for (int i = 1; i <= 3; i++) {
         if (s[i].able == false) {
             continue;
         }
 
-        if (s[i].hasMoved == false &amp;&amp; s[i].canThrow == false) {
-            for (int j = -mr[i]; j &lt;= mr[i]; j++) {
+        if (s[i].hasMoved == false && s[i].canThrow == false) {
+            for (int j = -mr[i]; j <= mr[i]; j++) {
                 if (j == 0) {
                     continue;
                 }
@@ -130,8 +135,8 @@ void dfs() {
         }  
 
         if (s[i].hasLifted == false) {
-            for (int j = 1; j &lt;= 3; j++) {
-                if (s[j].able == true &amp;&amp; abs(pos[i] - pos[j]) == 1) {
+            for (int j = 1; j <= 3; j++) {
+                if (s[j].able == true && abs(pos[i] - pos[j]) == 1) {
                     s[j].able = false;
                     s[i].hasLifted = true;
                     s[i].canThrow = true;
@@ -147,7 +152,7 @@ void dfs() {
         }
 
         if (s[i].canThrow) {
-            for (int j = -tr[i]; j &lt;= tr[i]; j++) {
+            for (int j = -tr[i]; j <= tr[i]; j++) {
                 if (j == 0) {
                     continue;
                 }
@@ -168,11 +173,11 @@ void dfs() {
 }
 
 int main() {
-    for (int i = 1; i &lt;= 3; i++) {
-        scanf("%d %d %d", &amp;pos[i], &amp;mr[i], &amp;tr[i]);
+    for (int i = 1; i <= 3; i++) {
+        scanf("%d %d %d", &pos[i], &mr[i], &tr[i]);
     }
     dfs();  
-    cout &lt;&lt; res;
+    cout << res;
     return 0;    
 }
 
@@ -203,4 +208,4 @@ int main() {
 
 * * *
 
-[算法训练 Lift and Throw (DFS &amp;&amp; 位运算)](http://blog.csdn.net/f_zyj/article/details/50867004)
+[算法训练 Lift and Throw (DFS && 位运算)](http://blog.csdn.net/f_zyj/article/details/50867004)

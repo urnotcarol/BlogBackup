@@ -3,6 +3,11 @@ title: POJ 2229 Sumsets 题解
 id: 145
 date: 2017-02-22 13:27:59
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 
@@ -16,7 +21,7 @@ tags:
 方法一：根据题目特定的条件找出规律，用小于n的2的幂组成n，令 dp[i] 表示方案总数，有下面两种情况：
 
 *   i为奇数，dp[i] = dp[i - 1]
-*   i为偶数，有两种可能，一种是组成 i 的数字里面没有 1, 即全是偶数，此时方案数为 dp[i / 2], 另一种可能是有 1, 那么必须有两个1，剩下的就是 dp[i - 2]. 故 dp[i] = dp[i - 1] + dp[i&gt;&gt;1]
+*   i为偶数，有两种可能，一种是组成 i 的数字里面没有 1, 即全是偶数，此时方案数为 dp[i / 2], 另一种可能是有 1, 那么必须有两个1，剩下的就是 dp[i - 2]. 故 dp[i] = dp[i - 1] + dp[i>>1]
 ```
 #include <iostream>
 #include <stdio.h>
@@ -30,19 +35,19 @@ int n;
 int dp[MAX_N + 3];
 
 int main() {
-    cin &gt;&gt; n;
+    cin >> n;
     dp[0] = 1;
     dp[1] = 1;
-    for (int j = 2; j &lt;= n; j++) {
-        if (j &amp; 1) {
+    for (int j = 2; j <= n; j++) {
+        if (j & 1) {
             dp[j] = dp[j - 1] % MOD;
         }
         else {
-            dp[j] = (dp[j - 2] + dp[j &gt;&gt; 1]) % MOD;
+            dp[j] = (dp[j - 2] + dp[j >> 1]) % MOD;
         }
 
     }
-    cout &lt;&lt; dp[n];
+    cout << dp[n];
     return 0;
 }
 ```
@@ -65,18 +70,18 @@ int number[20];
 int dp[MAX_N + 3];
 
 int main() {
-    for (int i = 0; i &lt; 20; i++) {
-        number[i] = 1 &lt;&lt; i;
+    for (int i = 0; i < 20; i++) {
+        number[i] = 1 << i;
     }
-    cin &gt;&gt; n;
+    cin >> n;
     int m = log((float)n) / log(2.0);
     dp[0] = 1;
-    for (int i = 0; i &lt;= m; i++) {
-        for (int j = number[i]; j &lt;= n; j++) {
+    for (int i = 0; i <= m; i++) {
+        for (int j = number[i]; j <= n; j++) {
             dp[j] = (dp[j] + dp[j - number[i]]) % 1000000000;
         }
     }
-    cout &lt;&lt; dp[n];
+    cout << dp[n];
     return 0;
 }
 ```

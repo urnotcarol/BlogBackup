@@ -73,34 +73,34 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-    type: git
-    repo:
-      vps: ssh://git@118.89.242.250/home/git/blog
-      github: ssh://git@github.com/urnotcarol/urnotcarol.github.io.git
-    branch: master
+  type: git
+  repo:
+    vps: ssh://git@118.89.242.250/home/git/blog
+    github: ssh://git@github.com/urnotcarol/urnotcarol.github.io.git
+  branch: master
 
 # 以下来自 yilia 主题
 
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: false
-    tags: true
+#jsonContent:
+#  meta: false
+#  pages: false
+#  posts:
+#    title: true
+#    date: true
+#    path: true
+#    text: false
+#    raw: false
+#    content: false
+#    slug: false
+#    updated: false
+#    comments: false
+#    link: false
+#    permalink: false
+#    excerpt: false
+#    categories: true
+#    tags: true

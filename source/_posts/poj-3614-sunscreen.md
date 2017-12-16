@@ -3,6 +3,11 @@ title: POJ 3614 Sunscreen 题解
 id: 221
 date: 2017-03-14 16:17:36
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 优先队列
 ---
 
 [POJ 3614 Sunscreen](http://poj.org/problem?id=3614)
@@ -39,35 +44,35 @@ pair<int, int> cow[MAX_C + 4];
 pair<int, int> lotion[MAX_L + 4];
 
 int main() {
-    scanf("%d %d", &amp;C, &amp;L);
-    for (int i = 0; i &lt; C; i++) {
-        scanf("%d %d", &amp;cow[i].first, &amp;cow[i].second);
+    scanf("%d %d", &C, &L);
+    for (int i = 0; i < C; i++) {
+        scanf("%d %d", &cow[i].first, &cow[i].second);
     }
 
-    priority_queue<int, vector&lt;int&gt;, greater&lt;int&gt; > que;
-    for (int i = 0; i &lt; L; i++) {
-        scanf("%d %d", &amp;lotion[i].first, &amp;lotion[i].second);
+    priority_queue<int, vector<int>, greater<int> > que;
+    for (int i = 0; i < L; i++) {
+        scanf("%d %d", &lotion[i].first, &lotion[i].second);
     }
     sort(cow, cow + C);
     sort(lotion, lotion + L);
 
     int res = 0;
     int cur = 0;
-    for (int i = 0; i &lt; L; i++) {
-        while (cur &lt; C &amp;&amp; cow[cur].first &lt;= lotion[i].first) {
+    for (int i = 0; i < L; i++) {
+        while (cur < C && cow[cur].first <= lotion[i].first) {
             que.push(cow[cur].second);
             cur++;
         }
-        while (!que.empty() &amp;&amp; lotion[i].second) {
+        while (!que.empty() && lotion[i].second) {
             int maxSPF = que.top();
             que.pop();
-            if (maxSPF &gt;= lotion[i].first) {
+            if (maxSPF >= lotion[i].first) {
                 res++;
                 lotion[i].second--;
             }
         }
     }
-    cout &lt;&lt; res;
+    cout << res;
     return 0;
 }
 ```

@@ -3,6 +3,11 @@ title: 迷宫最短路径问题 题解
 id: 87
 date: 2017-02-12 21:36:39
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
 《挑战程序设计竞赛》2.1.5 例题
@@ -54,13 +59,13 @@ void bfs() {
         int x = q.front().first;
         int y = q.front().second;
         q.pop();
-        if (x == gx &amp;&amp; y == gy) {
+        if (x == gx && y == gy) {
             break;
         }
-        for (int i = 0; i &lt; 4; i++) {
+        for (int i = 0; i < 4; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (nx &gt;= 0 &amp;&amp; nx < n &amp;&amp; ny >= 0 &amp;&amp; ny &lt; m &amp;&amp; maze[nx][ny] != '#' &amp;&amp; d[nx][ny] == INF) {
+            if (nx >= 0 && nx < n && ny >= 0 && ny < m && maze[nx][ny] != '#' && d[nx][ny] == INF) {
                 q.push(P(nx, ny));
                 d[nx][ny] = d[x][y] + 1;
             }
@@ -71,10 +76,10 @@ void bfs() {
 }
 
 int main() {
-    cin &gt;&gt; m &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = 0; j &lt; m; j++) {
-            cin &gt;&gt; maze[i][j];
+    cin >> m >> n;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cin >> maze[i][j];
             d[i][j] = INF;
             if (maze[i][j] == 'S') {
                 sx = i;
@@ -87,7 +92,7 @@ int main() {
         }
     }
     bfs();
-    cout &lt;&lt; d[gx][gy];
+    cout << d[gx][gy];
     return 0;
 }
 ```

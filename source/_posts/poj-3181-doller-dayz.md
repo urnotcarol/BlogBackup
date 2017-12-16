@@ -3,6 +3,11 @@ title: POJ 3181 Doller Dayz 题解
 id: 158
 date: 2017-03-08 11:39:03
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -37,15 +42,15 @@ public:
         memset(num, 0, sizeof(num));
     }
     void operator = (int input[MAX_D]) {
-        for (int i = 0; i &lt; MAX_D; i++) {
+        for (int i = 0; i < MAX_D; i++) {
             num[i] = input[i];
         }
     }
-    Bign operator + (Bign &amp; p) {
+    Bign operator + (Bign & p) {
         Bign res;
         int carry = 0;
         int mod = 0;
-        for (int i = MAX_D - 1; i &gt;= 0; i--) {
+        for (int i = MAX_D - 1; i >= 0; i--) {
             int sum = num[i] + p.num[i] + carry;
             mod = sum % 10;
             carry = sum / 10; 
@@ -63,26 +68,26 @@ Bign dp[MAX_N + 4];
 
 void solve() {
     dp[0].num[MAX_D - 1]= 1;
-    for (int i = 1; i &lt;= K; i++) {
-        for (int j = i; j &lt;= N; j++) {
+    for (int i = 1; i <= K; i++) {
+        for (int j = i; j <= N; j++) {
             dp[j] = dp[j] + dp[j - i];
         }
     }
 
     int s;
-    for (int i = 0; i &lt; MAX_D; i++) {
+    for (int i = 0; i < MAX_D; i++) {
         if (dp[N].num[i]) {
             s = i;
             break;
         } 
     } 
-    for (int i = s; i &lt; MAX_D; i++) {
-        cout &lt;&lt; dp[N].num[i];
+    for (int i = s; i < MAX_D; i++) {
+        cout << dp[N].num[i];
     }
 }
 
 int main() {
-    cin &gt;&gt; N &gt;&gt; K;
+    cin >> N >> K;
     solve();
     return 0;
 }

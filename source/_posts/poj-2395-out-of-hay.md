@@ -3,6 +3,11 @@ title: POJ 2395 Out of Hay 题解 Kruskal 最小生成树
 id: 317
 date: 2017-04-04 20:05:52
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最小生成树
 ---
 
 [POJ 2395 Out of Hay](http://poj.org/problem?id=2395)
@@ -36,8 +41,8 @@ int M;
 struct Edge {
     int u, v, cost;
 };
-bool comp(Edge &amp; e1, Edge &amp; e2) {
-    return e1.cost &lt; e2.cost;
+bool comp(Edge & e1, Edge & e2) {
+    return e1.cost < e2.cost;
 }
 
 Edge edge[MAX_M];
@@ -46,7 +51,7 @@ int par[MAX_N];
 int rank[MAX_N];
 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -65,7 +70,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &gt; rank[y]) {
+    if (rank[x] > rank[y]) {
         par[y] = x;
     } 
     else {
@@ -84,7 +89,7 @@ int kruskal() {
     init(N);
     int res = 0;
     sort(edge, edge + M, comp);
-    for (int i = 0; i &lt; M; i++) {
+    for (int i = 0; i < M; i++) {
         Edge e = edge[i];
         if (!same(e.u, e.v)) {
             unite(e.u, e.v);
@@ -99,10 +104,10 @@ int main() {
     freopen("in.txt", "r", stdin);
     #endif
 
-    scanf("%d %d", &amp;N, &amp;M);
+    scanf("%d %d", &N, &M);
     int u, v;
-    for (int i = 0; i &lt; M; i++) {        
-        scanf("%d %d %d", &amp;u, &amp;v, &amp;edge[i].cost);
+    for (int i = 0; i < M; i++) {
+        scanf("%d %d %d", &u, &v, &edge[i].cost);
         u--;
         v--;
         edge[i].u = u;

@@ -3,6 +3,11 @@ title: POJ 2385 Apple Catching 题解
 id: 152
 date: 2017-03-02 16:13:44
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -37,9 +42,7 @@ tags:
 
 因此最后应输出 dp[T][0] ~ dp[T][W] 中的最大值。
 
-&nbsp;
-
-<span style="font-size: 14pt;">AC代码</span>
+### 代码
 ```
 #include <iostream>
 #include <stdio.h>
@@ -56,22 +59,20 @@ int dp[MAX_T + 3][MAX_W + 3];
 int apple[MAX_T + 3];
 
 int main() {
-    cin &gt;&gt; T &gt;&gt; W;
-    for (int i = 1; i &lt;= T; i++) {
-        scanf("%d", &amp;apple[i]);
+    cin >> T >> W;
+    for (int i = 1; i <= T; i++) {
+        scanf("%d", &apple[i]);
         dp[i][0] = dp[i - 1][0] + (apple[i] == 1);
-        for (int j = 1; j &lt;= W; j++) {
+        for (int j = 1; j <= W; j++) {
             dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - 1]) + (apple[i] == j % 2 + 1);
         }
     }
 
     int maxA = 0;
-    for (int i = 0; i &lt;= W; i++) {
+    for (int i = 0; i <= W; i++) {
         maxA = max(maxA, dp[T][i]);
     }
-    cout &lt;&lt; maxA;
+    cout << maxA;
     return 0;
 }
 ```
-
-&nbsp;

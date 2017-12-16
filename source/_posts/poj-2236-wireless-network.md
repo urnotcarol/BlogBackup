@@ -3,6 +3,11 @@ title: POJ 2236 Wireless Network 题解
 id: 233
 date: 2017-03-15 22:20:06
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 [POJ 2236 Wireless Network](http://poj.org/problem?id=2236)
@@ -36,7 +41,7 @@ int par[MAX_N + 4];
 int rank[MAX_N + 4];
 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -55,7 +60,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &lt; rank[y]) {
+    if (rank[x] < rank[y]) {
         par[x] = y;
     }
     else {
@@ -71,14 +76,14 @@ bool same(int x, int y) {
 }
 
 int main() {
-    scanf("%d %d", &amp;N, &amp;d);
+    scanf("%d %d", &N, &d);
     init(N + 1);
-    for (int i = 1; i &lt;= N; i++) {
-        scanf("%d %d", &amp;x[i], &amp;y[i]);
+    for (int i = 1; i <= N; i++) {
+        scanf("%d %d", &x[i], &y[i]);
     }
-    for (int i = 1; i &lt;= N; i++) {
-        for (int j = i + 1; j &lt;= N; j++) {
-            if (sqrt((double)((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]))) &lt;= d) {
+    for (int i = 1; i <= N; i++) {
+        for (int j = i + 1; j <= N; j++) {
+            if (sqrt((double)((x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]))) <= d) {
                 reach[i][j] = true;
                 reach[j][i] = true;
             }
@@ -86,17 +91,17 @@ int main() {
     }
     cin.ignore();
     char operation;
-    while (scanf("%c", &amp;operation) != EOF) {                 
+    while (scanf("%c", &operation) != EOF) {
         if (operation == 'O') {
             int x;
-            scanf("%d", &amp;x);
+            scanf("%d", &x);
             repaired[x] = true;
-            for (int i = 1; i &lt;= N; i++) {
+            for (int i = 1; i <= N; i++) {
                 if (i == x) {
                     continue;
                 }
 
-                if (reach[x][i] &amp;&amp; repaired[i]) {
+                if (reach[x][i] && repaired[i]) {
                     unite(i, x);                    
                 }
             }            
@@ -104,7 +109,7 @@ int main() {
         else if (operation == 'S') {
             int p;
             int q;
-            scanf("%d %d", &amp;p, &amp;q);         
+            scanf("%d %d", &p, &q);
             if (same(p, q)) {
                 printf("SUCCESS\n");
             } 

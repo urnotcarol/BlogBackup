@@ -3,6 +3,11 @@ title: POJ 1862 Stripies 题解
 id: 121
 date: 2017-02-12 22:22:27
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 1862 Stripies](https://vjudge.net/problem/16383/origin)
@@ -32,11 +37,11 @@ double w[103];
 
 int main() {
     double res = 0;
-    scanf("%d", &amp;n);
-    for (int i = 0; i &lt; n; i++) {
-        scanf("%lf", &amp;w[i]);
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        scanf("%lf", &w[i]);
     }
-    while (n &gt; 0) {   
+    while (n > 0) {
         if (n == 1) {
             res = w[0];
             break;
@@ -50,7 +55,7 @@ int main() {
         n--;
     }
 
-    cout &lt;&lt; setiosflags(ios::fixed) &lt;&lt; setprecision(3) &lt;&lt; res &lt;&lt; endl;
+    cout << setiosflags(ios::fixed) << setprecision(3) << res << endl;
     return 0;
 }
 ```

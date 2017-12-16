@@ -3,6 +3,11 @@ title: POJ 3616 Milking Time 题解
 id: 153
 date: 2017-03-03 16:29:39
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -31,28 +36,28 @@ struct Invl {
     int s;
     int t;
     int eff;
-    bool operator &lt; (Invl &amp; i) {
-        return s &lt; i.s;
+    bool operator < (Invl & i) {
+        return s < i.s;
     }
 };
 Invl invl[MAX_M + 3];
 int dp[MAX_M + 3];
 
 int main() {
-    scanf("%d %d %d", &amp;N, &amp;M, &amp;R);
-    for (int i = 1; i &lt;= M; i++) {
-        scanf("%d %d %d", &amp;invl[i].s, &amp;invl[i].t, &amp;invl[i].eff);
+    scanf("%d %d %d", &N, &M, &R);
+    for (int i = 1; i <= M; i++) {
+        scanf("%d %d %d", &invl[i].s, &invl[i].t, &invl[i].eff);
     }
     sort(invl + 1, invl + 1 + M);
-    for (int i = 1; i &lt;= M; i++) {
+    for (int i = 1; i <= M; i++) {
         dp[i] = invl[i].eff;
-        for (int j = 1; j &lt;= i; j++) {
-            if (invl[j].t + R &lt;= invl[i].s) {
+        for (int j = 1; j <= i; j++) {
+            if (invl[j].t + R <= invl[i].s) {
                 dp[i] = max(dp[i], dp[j] + invl[i].eff); 
             }            
         }
     }
-    cout &lt;&lt; *max_element(dp + 1, dp + 1 + M);
+    cout << *max_element(dp + 1, dp + 1 + M);
     return 0;
 }
 ```
@@ -73,20 +78,20 @@ int N;
 int M;
 int R;
 long long dp[MAX_N + 3];
-pair<pair&lt;int, int&gt;, int> invl[MAX_M + 3];
+pair<pair<int, int>, int> invl[MAX_M + 3];
 
 int main() {
-    scanf("%d %d %d", &amp;N, &amp;M, &amp;R);
-    for (int i = 1; i &lt;= M; i++) {
-        scanf("%d %d %d", &amp;invl[i].first.first, &amp;invl[i].first.second, &amp;invl[i].second);
+    scanf("%d %d %d", &N, &M, &R);
+    for (int i = 1; i <= M; i++) {
+        scanf("%d %d %d", &invl[i].first.first, &invl[i].first.second, &invl[i].second);
     }
     sort(invl + 1, invl + 1 + M);
-    for (int i = 1; i &lt;= M; i++) {
-        for (int j = N; j &gt;= invl[i].first.second; j--) {             
-            dp[j] = max(dp[j], dp[(invl[i].first.first - R) * (invl[i].first.first - R &gt; 0)] + invl[i].second);
+    for (int i = 1; i <= M; i++) {
+        for (int j = N; j >= invl[i].first.second; j--) {
+            dp[j] = max(dp[j], dp[(invl[i].first.first - R) * (invl[i].first.first - R > 0)] + invl[i].second);
         }
     }
-    cout &lt;&lt; dp[N];
+    cout << dp[N];
     return 0;
 }
 ```

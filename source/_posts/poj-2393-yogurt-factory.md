@@ -3,6 +3,11 @@ title: POJ 2393 Yogurt factory 题解
 id: 117
 date: 2017-02-12 22:17:15
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 [POJ 2393 Yogurt factory](https://vjudge.net/problem/16489/origin)
@@ -31,10 +36,10 @@ ll y[10005];
 void solve() {
     ll res = 0;
 
-    for (int i = 1; i &lt; n; i++) {
+    for (int i = 1; i < n; i++) {
         c[i] = min(c[i], c[i - 1] + s);  //每一周只需要和上周比较的原因是上周和上上周也比较过了。
     } 
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         res += c[i] * y[i];
     }
 
@@ -42,9 +47,9 @@ void solve() {
 }
 
 int main() {
-    scanf("%d %d", &amp;n, &amp;s);
-    for (int i = 0; i &lt; n; i++) {
-        scanf("%d %d", &amp;c[i], &amp;y[i]);
+    scanf("%d %d", &n, &s);
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", &c[i], &y[i]);
     }
     solve();
     return 0;

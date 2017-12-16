@@ -3,6 +3,11 @@ title: POJ 3176 Cow Bowling 题解
 id: 144
 date: 2017-02-13 23:35:13
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -28,22 +33,22 @@ int dp[MAX_N + 3][MAX_N + 3];
 
 void solve() {
     int res = 0;
-    for (int i = 1; i &lt;= n; i++) {
-        for (int j = 1; j &lt;= i; j++) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
             dp[i][j] = tri[i][j] + max(dp[i - 1][j - 1], dp[i - 1][j]);
         }
     }
-    for (int i = 1; i &lt;= n; i++) {
+    for (int i = 1; i <= n; i++) {
         res = max(res, dp[n][i]);
     }
     printf("%d", res);
 }
 
 int main() {
-    scanf("%d", &amp;n);
-    for (int i = 1; i &lt;= n; i++) {
-        for (int j = 1; j &lt;= i; j++) {
-            scanf("%d", &amp;tri[i][j]);
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            scanf("%d", &tri[i][j]);
         }
     }
     solve();

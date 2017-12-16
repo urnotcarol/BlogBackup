@@ -3,6 +3,11 @@ title: POJ 3069 Saruman's Army 题解
 id: 106
 date: 2017-02-12 22:05:09
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 3069 Saruman's Army](http://poj.org/problem?id=3069)
@@ -29,24 +34,24 @@ tags:
 >     sort(x, x + n);
 > 
 >     int i = 0;
->     while (i &lt; n) {
+>     while (i < n) {
 >         int s = x[i++];
->         while (i &lt; n &amp;&amp; x[i] &lt;= s + r) {
+>         while (i < n && x[i] <= s + r) {
 >             i++;
 >         }
 >         int p = x[i - 1];
->         while (i &lt; n &amp;&amp; x[i] &lt;= p + r) {
+>         while (i < n && x[i] <= p + r) {
 >             i++;
 >         }
 >         res++;        
 >     }
->     cout &lt;&lt; res &lt;&lt; endl;
+>     cout << res << endl;
 > }
 > 
 > int main() {
->     while (cin &gt;&gt; r &gt;&gt; n &amp;&amp; r != -1) {
->         for (int i = 0; i &lt; n; i++) {
->             cin &gt;&gt; x[i];
+>     while (cin >> r >> n && r != -1) {
+>         for (int i = 0; i < n; i++) {
+>             cin >> x[i];
 >         }
 > 
 >         solve();

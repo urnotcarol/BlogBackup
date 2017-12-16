@@ -3,6 +3,11 @@ title: POJ 2376 Cleaning Shifts 题解
 id: 110
 date: 2017-02-12 22:11:12
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 贪心
 ---
 
 [POJ 2376 Cleaning Shifts](https://vjudge.net/problem/10046/origin)
@@ -30,12 +35,12 @@ void solve() {
     int res = 0;
     int cur = 0;
 
-    while (cur &lt; t) {      
+    while (cur < t) {
         int maxT = 0;
         int count = 0;
 
-        for (int i = 0; i &lt; n; i++) {
-            if (invl[i].first <= cur + 1 &amp;&amp; invl[i].second > cur) {
+        for (int i = 0; i < n; i++) {
+            if (invl[i].first <= cur + 1 && invl[i].second > cur) {
                 count++;
                 maxT = max(maxT, invl[i].second);
             }
@@ -53,13 +58,13 @@ void solve() {
 }
 
 int main() {
-    scanf("%d %d", &amp;n, &amp;t);
+    scanf("%d %d", &n, &t);
     int maxT = 0;
-    for (int i = 0; i &lt; n; i++) {
-        scanf("%d %d", &amp;invl[i].first, &amp;invl[i].second);
+    for (int i = 0; i < n; i++) {
+        scanf("%d %d", &invl[i].first, &invl[i].second);
         maxT = max(maxT, invl[i].second);
     }
-    if (maxT &lt; t) {
+    if (maxT < t) {
         printf("-1");
     } 
     else {

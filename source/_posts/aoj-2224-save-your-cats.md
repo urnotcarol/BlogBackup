@@ -3,6 +3,11 @@ title: AOJ 2224 Save your cats 题解 Kruskal 最小生成树
 id: 314
 date: 2017-04-04 19:57:28
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 最小生成树
 ---
 
 [AOJ 2224 Save your cats](http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2224)
@@ -45,8 +50,8 @@ struct Edge {
     Edge(int u, int v, double cost): u(u), v(v), cost(cost) {}
 };
 
-bool comp(Edge &amp; e1, Edge &amp; e2) {
-    return e1.cost &lt; e2.cost;
+bool comp(Edge & e1, Edge & e2) {
+    return e1.cost < e2.cost;
 }
 
 P pile[MAX_N];
@@ -56,7 +61,7 @@ int par[MAX_N];
 int rank[MAX_N];
 
 void init(int n) {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         par[i] = i;
         rank[i] = 0;
     }
@@ -75,7 +80,7 @@ void unite(int x, int y) {
     if (x == y) {
         return;
     }
-    if (rank[x] &lt; rank[y]) {
+    if (rank[x] < rank[y]) {
         par[x] = y;
     }
     else {
@@ -93,7 +98,7 @@ bool same(int x, int y) {
 void kruskal() {
     init(N);
     sort(edge.begin(), edge.end(), comp);
-    for (int i = 0; i &lt; edge.size(); i++) {
+    for (int i = 0; i < edge.size(); i++) {
         Edge e = edge[i];
         if (!same(e.u, e.v)) {
             unite(e.u, e.v);
@@ -106,16 +111,16 @@ int main() {
     #ifndef ONLINE_JUDGE
     freopen("in.txt", "r", stdin);
     #endif
-    scanf("%d %d", &amp;N, &amp;M);
+    scanf("%d %d", &N, &M);
     int x, y;
-    for (int i = 1; i &lt;= N; i++) {
-        scanf("%d %d", &amp;pile[i].x, &amp;pile[i].y);
+    for (int i = 1; i <= N; i++) {
+        scanf("%d %d", &pile[i].x, &pile[i].y);
     }
     int u, v;
     double cost;
     sum = 0;
-    for (int i = 0; i &lt; M; i++) {
-        scanf("%d %d", &amp;u, &amp;v);
+    for (int i = 0; i < M; i++) {
+        scanf("%d %d", &u, &v);
         cost = -sqrt(pow((pile[u].x - pile[v].x), 2) + pow((pile[u].y - pile[v].y), 2));
         sum += cost;
         edge.push_back(Edge(u, v, cost));

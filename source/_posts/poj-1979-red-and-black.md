@@ -3,9 +3,14 @@ title: POJ 1979 Red and Black 题解
 id: 76
 date: 2017-02-12 21:05:44
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 搜索
 ---
 
-<span style="color: #008080;">[POJ 1979 Red and Black](http://poj.org/problem?id=1979)</span>
+[POJ 1979 Red and Black](http://poj.org/problem?id=1979)
 
 ## 题意
 
@@ -14,7 +19,8 @@ tags:
 ## 思路
 
 深度优先搜索
-<pre class="theme:twilight font:consolas top-margin:35 bottom-margin:65 lang:c++ decode:true ">#include <iostream>
+```
+`#include <iostream>
 
 using namespace std;
 
@@ -27,10 +33,10 @@ void dfs(int index, int x, int y) {
     tiles[x][y] = '#';
     int dx[4] = {-1, 0, 1, 0};
     int dy[4] = {0, -1, 0, 1};
-    for (int i = 0; i &lt; 4; i++) {
+    for (int i = 0; i < 4; i++) {
         int nx = x + dx[i];
         int ny = y + dy[i];
-        if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; nx &lt; h[index] &amp;&amp; ny &lt; w[index] &amp;&amp; tiles[nx][ny] == '.') {
+        if (nx >= 0 && ny >= 0 && nx < h[index] && ny < w[index] && tiles[nx][ny] == '.') {
             res[index]++;
             dfs(index, nx, ny);
         }
@@ -40,8 +46,8 @@ void dfs(int index, int x, int y) {
 
 void solve(int index) {
     res[index] = 1;
-    for (int i = 0; i &lt; h[index]; i++) {
-        for (int j = 0; j &lt; w[index]; j++) {
+    for (int i = 0; i < h[index]; i++) {
+        for (int j = 0; j < w[index]; j++) {
             if (tiles[i][j] == '@') {
                 dfs(index, i, j);
             }
@@ -51,19 +57,19 @@ void solve(int index) {
 int main() {
     int index = 0;
     do {
-        cin &gt;&gt; w[index] &gt;&gt; h[index];
-         for (int i = 0; i &lt; h[index]; i++) {
-            for (int j = 0; j &lt; w[index]; j++) {
-               cin &gt;&gt; tiles[i][j]; 
+        cin >> w[index] >> h[index];
+         for (int i = 0; i < h[index]; i++) {
+            for (int j = 0; j < w[index]; j++) {
+               cin >> tiles[i][j];
            }
         }
         solve(index);
         index++;
     } 
-    while (w[index - 1] &gt; 0 &amp;&amp; h[index - 1] &gt; 0);
+    while (w[index - 1] > 0 && h[index - 1] > 0);
 
-    for (int i = 0; i &lt; index -1; i++) {
-        cout &lt;&lt; res[i] &lt;&lt; endl;
+    for (int i = 0; i < index -1; i++) {
+        cout << res[i] << endl;
     }
 
     return 0;
@@ -71,8 +77,6 @@ int main() {
 ```
 
 //第一个AC的OJ题目，加油
-
-* * *
 
 ## 2017.4.7 温习
 
@@ -96,10 +100,10 @@ void dfs(int x, int y) {
     int nx;
     int ny;
     tile[x][y] = '#';
-    for (int i = 0; i &lt; 4; i++) {
+    for (int i = 0; i < 4; i++) {
         nx = x + dx[i];
         ny = y + dy[i];
-        if (nx &gt;= 0 &amp;&amp; nx < H &amp;&amp; ny >= 0 &amp;&amp; ny &lt; W &amp;&amp; tile[nx][ny] == '.') {
+        if (nx >= 0 && nx < H && ny >= 0 && ny < W && tile[nx][ny] == '.') {
             res++;
 //            tile[nx][ny] = '#';
             dfs(nx, ny);
@@ -112,11 +116,11 @@ int main() {
     #ifndef ONLINE_JUDGE
     freopen("in.txt", "r", stdin);
     #endif
-    while (scanf("%d %d", &amp;W, &amp;H) &amp;&amp; W != 0) {
-        for (int i = 0; i &lt; H; i++) {
+    while (scanf("%d %d", &W, &H) && W != 0) {
+        for (int i = 0; i < H; i++) {
             cin.ignore();
-            for (int j = 0; j &lt; W; j++) {
-                scanf("%c", &amp;tile[i][j]);
+            for (int j = 0; j < W; j++) {
+                scanf("%c", &tile[i][j]);
                 if (tile[i][j] == '@') {
                     sx = i;
                     sy = j;
@@ -134,8 +138,6 @@ int main() {
     return 0;        
 }
 ```
-
-&nbsp;
 
 1.  无需用数组保存各个用例的结果，在用例间直接输出就可以
 2.  注意状态的改变或者标记是在找到子递归的时候进行还是每次进入新递归之后进行

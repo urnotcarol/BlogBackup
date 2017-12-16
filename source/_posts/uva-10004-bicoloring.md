@@ -3,6 +3,11 @@ title: UVA 10004 Bicoloring 题解
 id: 248
 date: 2017-03-18 21:53:49
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 图论基础
 ---
 
 [UVA 10004 Bicoloring](https://vjudge.net/problem/UVA-10004)
@@ -35,11 +40,11 @@ int color[MAX_N];
 
 bool dfs(int v, int c) {
     color[v] = c;
-    for (int i = 0; i &lt; G[v].size(); i++) {
+    for (int i = 0; i < G[v].size(); i++) {
         if (color[G[v][i]] == c) {
             return false;
         }
-        if (color[G[v][i]] == 0 &amp;&amp; !dfs(G[v][i], -c)) {
+        if (color[G[v][i]] == 0 && !dfs(G[v][i], -c)) {
             return false;
         }
     }
@@ -47,7 +52,7 @@ bool dfs(int v, int c) {
 }
 
 bool solve() {
-    for (int i = 0; i &lt; n; i++) {
+    for (int i = 0; i < n; i++) {
         if (color[i] == 0) {
             if (!dfs(i, 1)) {
                 return false;
@@ -58,16 +63,16 @@ bool solve() {
 }
 
 int main () {
-    while(scanf("%d", &amp;n) &amp;&amp; n &gt; 0) {
-        for (int i = 0; i &lt; MAX_N; i++) {
+    while(scanf("%d", &n) && n > 0) {
+        for (int i = 0; i < MAX_N; i++) {
             G[i].clear();
         }
         memset(color, 0, sizeof(color));
-        scanf("%d", &amp;l);
+        scanf("%d", &l);
         int a;
         int b;
-        for (int i = 0; i &lt; l; i++) {
-            scanf("%d %d", &amp;a, &amp;b);
+        for (int i = 0; i < l; i++) {
+            scanf("%d %d", &a, &b);
             G[a].push_back(b);
             G[b].push_back(a);
         }

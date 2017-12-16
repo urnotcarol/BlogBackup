@@ -2,8 +2,10 @@
 title: Spark统计莎士比亚文集词频大容量版
 id: 379
 date: 2017-07-08 11:06:28
-tags: spark
-toc: true
+tags:
+- Scala
+categories:
+- 数据分析初学
 ---
 
 ## 题目要求

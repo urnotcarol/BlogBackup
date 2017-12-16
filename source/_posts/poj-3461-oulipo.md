@@ -3,6 +3,11 @@ title: POJ 3461 Oulipo 题解 KMP
 id: 289
 date: 2017-04-03 21:23:16
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 字符串
 ---
 
 ## 题意
@@ -235,8 +240,8 @@ void computePrefix(char * P) {
     int n = strlen(P);
     int k = 0;
     Pi[0] = 0;
-    for (int q = 1; q &lt; n; q++) {
-        while (k &gt; 0 &amp;&amp; P[q] != P[k]) {
+    for (int q = 1; q < n; q++) {
+        while (k > 0 && P[q] != P[k]) {
             k = Pi[k - 1];
         }
         if (P[q] == P[k]) {
@@ -252,8 +257,8 @@ int KMP(char * T, char * P) {
     int m = strlen(P);
     int q = 0;       //numbers of characters matched
     computePrefix(P);
-    for (int i = 0; i &lt; n; i++) {
-        while (q &gt; 0 &amp;&amp; P[q] != T[i]) {
+    for (int i = 0; i < n; i++) {
+        while (q > 0 && P[q] != T[i]) {
             q = Pi[q - 1];
         }
         if (P[q] == T[i]) {
@@ -269,7 +274,7 @@ int KMP(char * T, char * P) {
 
 int main() {
     int C;
-    scanf("%d", &amp;C);
+    scanf("%d", &C);
     while (C--) {
         scanf("%s", W);
         scanf("%s", T);

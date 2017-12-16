@@ -2,7 +2,10 @@
 title: Hadoop练习-流量统计
 id: 370
 date: 2017-06-22 21:04:17
-tags: Hadoop
+tags:
+- Hadoop
+categories:
+- 数据分析初学
 ---
 
 ## 要求
@@ -94,7 +97,7 @@ public class FlowCalcDriver {
         }
 
         public int compareTo(Flow that) {
-            return this.totalFlow &gt; that.getTotalFlow() ? -1 : 1;
+            return this.totalFlow > that.getTotalFlow() ? -1 : 1;
         }
     }
 
@@ -150,7 +153,7 @@ public class FlowCalcDriver {
         public int getPartition(Flow key, Text value, int num) {
             int res;
             int prefix = Integer.parseInt(value.toString().substring(0, 3));
-            if (prefix &gt;= 134 &amp;&amp; prefix &lt;= 139) {
+            if (prefix >= 134 && prefix <= 139) {
                 res = prefix % 134;
             }
             else {
@@ -240,7 +243,7 @@ public class FlowCalcDriver {
 
         boolean partFlag = partJob.waitForCompletion(true);
 
-        System.exit((flag == true &amp;&amp; sortFlag == true &amp;&amp; partFlag == true)? 1:0);
+        System.exit((flag == true && sortFlag == true && partFlag == true)? 1:0);
     }
 }
 ```

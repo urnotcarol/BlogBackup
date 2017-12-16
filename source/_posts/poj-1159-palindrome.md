@@ -3,6 +3,11 @@ title: POJ 1159 Palindrome 题解
 id: 282
 date: 2017-04-03 11:02:40
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 字符串
 ---
 
 [POJ 1159 Palindrome](https://vjudge.net/problem/POJ-1159)
@@ -38,17 +43,17 @@ char rts[MAX_N + 4];
 int dp[2][MAX_N + 4];
 
 int main() {
-    cin &gt;&gt; N;
+    cin >> N;
     cin.ignore();
-    for (int i = 1; i &lt;= N; i++) {
-        scanf("%c", &amp;str[i]);
+    for (int i = 1; i <= N; i++) {
+        scanf("%c", &str[i]);
         rts[N + 1 - i] = str[i];
     } 
-    for (int i = 1; i &lt;= N; i++) {
-        int cur = i &amp; 0x1;
-        int pre = (i - 1) &amp; 0x1;
+    for (int i = 1; i <= N; i++) {
+        int cur = i & 0x1;
+        int pre = (i - 1) & 0x1;
         memset(dp[cur], 0, sizeof(dp[cur]));
-        for (int j = 1; j &lt;= N; j++) {
+        for (int j = 1; j <= N; j++) {
             if (str[i] == rts[j]) {
                 dp[cur][j] = dp[pre][j - 1] + 1;
             }
@@ -57,7 +62,7 @@ int main() {
             }
         }
     }
-    cout &lt;&lt; N - dp[N &amp; 0x1][N];
+    cout << N - dp[N & 0x1][N];
     return 0;
 }
 ```

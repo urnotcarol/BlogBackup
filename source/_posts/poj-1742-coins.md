@@ -3,6 +3,11 @@ title: POJ 1742 Coins 题解
 id: 155
 date: 2017-03-08 10:53:08
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -44,12 +49,12 @@ int dp[MAX_M + 3];
 void solve() {
     memset(dp, -1, sizeof(dp));   
     dp[0] = 0; 
-    for (int i = 1; i &lt;= n; i++) {
-        for (int j = 0; j &lt;= m; j++) {
-            if (dp[j] &gt;= 0) {    //前 i - 1 个数已经能够加和组成 j, 所以第 i 个数全部剩下
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= m; j++) {
+            if (dp[j] >= 0) {    //前 i - 1 个数已经能够加和组成 j, 所以第 i 个数全部剩下
                 dp[j] = c[i];
             }
-            else if (j &lt; a[i] || dp[j - a[i]] &lt;= 0) { //加上这个数也不能组成 j
+            else if (j < a[i] || dp[j - a[i]] <= 0) { //加上这个数也不能组成 j
                 dp[j] = -1;
             }
             else {   
@@ -58,21 +63,21 @@ void solve() {
         }
     }
     int count = 0;
-    for (int i = 1; i &lt;= m; i++) {
-        if(dp[i] &gt;= 0) {
+    for (int i = 1; i <= m; i++) {
+        if(dp[i] >= 0) {
             count++;
         }
     }
-    cout &lt;&lt; count &lt;&lt; endl;
+    cout << count << endl;
 }
 
 int main() {
-    while(scanf("%d %d", &amp;n, &amp;m) &amp;&amp; n) {
-        for (int i = 1; i &lt;= n; i++) {
-            scanf("%d", &amp;a[i]);
+    while(scanf("%d %d", &n, &m) && n) {
+        for (int i = 1; i <= n; i++) {
+            scanf("%d", &a[i]);
         }
-        for (int i = 1; i &lt;= n; i++) {
-            scanf("%d", &amp;c[i]);
+        for (int i = 1; i <= n; i++) {
+            scanf("%d", &c[i]);
         }
         solve();
     }

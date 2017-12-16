@@ -3,6 +3,11 @@ title: POJ 1631 Bridging signals 题解
 id: 163
 date: 2017-03-10 15:39:49
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -39,19 +44,19 @@ int port[MAX_P + 4];
 int dp[MAX_P + 4];
 
 int main() {
-    scanf("%d", &amp;n);
+    scanf("%d", &n);
     while (n--) {
-        scanf("%d", &amp;p);
-        for (int i = 0; i &lt; p; i++) {
-            scanf("%d", &amp;port[i]);
+        scanf("%d", &p);
+        for (int i = 0; i < p; i++) {
+            scanf("%d", &port[i]);
             dp[i] = INF;
         }
 
-        for (int i = 0; i &lt; p; i++) {
+        for (int i = 0; i < p; i++) {
             *lower_bound(dp, dp + p, port[i]) = port[i];
         }
 
-        cout &lt;&lt; lower_bound(dp, dp + p, INF) - dp &lt;&lt; endl;
+        cout << lower_bound(dp, dp + p, INF) - dp << endl;
     }
     return 0;
 }

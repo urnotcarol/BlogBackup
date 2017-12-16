@@ -3,6 +3,11 @@ title: 背包问题 HDU 2602 Bone Collector + HDU 1114 Piggy-Bank
 id: 148
 date: 2017-02-19 22:29:15
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 动态规划
 ---
 
 
@@ -27,18 +32,18 @@ long long dp[MAX_N + 1];
 
 int main() {
     int input;
-    cin &gt;&gt; input;
-    while(input-- &gt; 0) {
-        cin &gt;&gt; N &gt;&gt; V;
-        for (int i = 0; i &lt; N; i++) {
-            scanf("%d", &amp;value[i]);
+    cin >> input;
+    while(input-- > 0) {
+        cin >> N >> V;
+        for (int i = 0; i < N; i++) {
+            scanf("%d", &value[i]);
         }
-        for (int i = 0; i &lt; N; i++) {
-            scanf("%d", &amp;vol[i]);
+        for (int i = 0; i < N; i++) {
+            scanf("%d", &vol[i]);
         }
 
-        for (int i = 0; i &lt; N; i++) {
-            for (int j = V; j &gt;= vol[i]; j--) {
+        for (int i = 0; i < N; i++) {
+            for (int j = V; j >= vol[i]; j--) {
                 dp[j] = max(dp[j], dp[j - vol[i]] + value[i]);
             }
         }
@@ -73,18 +78,18 @@ pair<int, int> coin[MAX_N + 3];
 int dp[MAX_E + 3];
 
 int main() {
-    scanf("%d", &amp;T);
+    scanf("%d", &T);
     while(T--) {
-        scanf("%d %d", &amp;E, &amp;F);
-        scanf("%d", &amp;N);
-        for (int i = 0; i &lt; N; i++) {
-            scanf("%d %d", &amp;coin[i].first, &amp;coin[i].second);
+        scanf("%d %d", &E, &F);
+        scanf("%d", &N);
+        for (int i = 0; i < N; i++) {
+            scanf("%d %d", &coin[i].first, &coin[i].second);
         }
         E = F - E;
         memset(dp, INF, sizeof(dp));
         dp[0] = 0;
-        for (int i = 0; i &lt; N; i++) {
-            for (int j = coin[i].second; j &lt;= E; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = coin[i].second; j <= E; j++) {
                 dp[j] = min(dp[j], dp[j - coin[i].second] + coin[i].first);
             }
         }
@@ -133,33 +138,33 @@ long long dp[MAX_N + 5];
 using namespace std;
 
 int main() {
-    scanf("%d", &amp;C);
+    scanf("%d", &C);
     while(C--) {
         memset(dp, 0, sizeof(dp));
-        scanf("%d %d", &amp;n, &amp;m);
-        for (int i = 0; i &lt; m; i++) {
-            scanf("%d %d %d", &amp;p, &amp;h, &amp;c);
-            if (p * c &gt;= n) {
-                for (int j = p; j &lt;= n; j++) {
+        scanf("%d %d", &n, &m);
+        for (int i = 0; i < m; i++) {
+            scanf("%d %d %d", &p, &h, &c);
+            if (p * c >= n) {
+                for (int j = p; j <= n; j++) {
                     dp[j] = max(dp[j], dp[j - p] + h);
                 }
             }
             else {
                 int k = 1;
-                while (k &lt; c) {
-                    for (int j = n; j &gt;= p; j--) {
+                while (k < c) {
+                    for (int j = n; j >= p; j--) {
                         dp[j] = max(dp[j], dp[j - k * p] + k * h);
                     }
                     c -= k;
                     k *= 2;
                 }                
-                for (int j = n; j &gt;= p; j--) {
+                for (int j = n; j >= p; j--) {
                     dp[j] = max(dp[j], dp[j - c * p] + c * h);
                 }
 
             }
         }
-        cout &lt;&lt; dp[n] &lt;&lt; endl;
+        cout << dp[n] << endl;
     }
     return 0;
 }

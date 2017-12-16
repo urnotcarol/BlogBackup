@@ -3,6 +3,11 @@ title: CCF 201703-4 地铁修建 题解 并查集
 id: 320
 date: 2017-04-05 10:43:44
 tags:
+- 算法
+- OJ
+categories:
+- 算法
+- 并查集
 ---
 
 ### 题目
@@ -60,7 +65,7 @@ struct Edge {
     int u, v, cost;
     Edge() {}
     Edge(int u, int v, int cost): u(u), v(v), cost(cost) {}
-    bool operator> (const Edge &amp; e) const {
+    bool operator> (const Edge & e) const {
         return cost > e.cost;
     }
 };
@@ -105,12 +110,12 @@ bool same(int x, int y) {
 }
 
 int main() {
-    scanf("%d %d", &amp;n, &amp;m);
+    scanf("%d %d", &n, &m);
     init(n + 1);
     int u, v, cost;
     priority_queue<Edge, vector<Edge>, greater<Edge> > que;
     for (int i = 0; i < m; i++) {
-        scanf("%d %d %d", &amp;u, &amp;v, &amp;cost);
+        scanf("%d %d %d", &u, &v, &cost);
         que.push(Edge(u, v, cost));
     }
 
