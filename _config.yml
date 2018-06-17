@@ -73,15 +73,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo:
-    vps: ssh://git@118.89.242.250/home/git/blog
-    github: ssh://git@github.com/urnotcarol/urnotcarol.github.io.git
+  repo: ssh://git@139.199.113.182/home/git/blog.git
   branch: master
 
 # 以下来自 yilia 主题
